@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: mvc
+  datasource:
+    url: "jdbc:mariadb://${DATABASE_URL:localhost:3307}/svc_user_manager?createDatabaseIfNotExist=true"
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ${DATABASE_USERNAME:svc_user_manager}
+    password: ${DATABASE_PASSWORD:vuew4NdJgM3yZb5b}
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.MariaDBDialect
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      format_sql: false
