@@ -11,11 +11,9 @@
     <script type="text/javascript" th:src="@{/css/script.css}"></script>
 </head>
 <body>
-    <header th:insert="fragments/header.html"> </header>
+    <header th:insert="fragments/header.html" > </header>
+
     <h1>Forum đơn giản</h1>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out"/>
-    </form>
 
     <footer th:insert="fragments/footer.html"> </footer>
 </body>

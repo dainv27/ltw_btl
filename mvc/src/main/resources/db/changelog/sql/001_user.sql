@@ -1,9 +1,9 @@
 --liquibase formatted sql
---changeset svc_access_control:tzt-user-001
+--changeset svc_z_blog:tbl-user-001
 --preconditions onFail:MARK_RAN onError:HALT
---precondition-sql-check expectedResult:0 SELECT COUNT(*) C FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='USER';
-CREATE TABLE TZT_USER(
-    `ID` VARCHAR(50) NOT NULL GENERATED ,
+--precondition-sql-check expectedResult:0 SELECT COUNT(*) C FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='TBL_USER';
+CREATE TABLE TBL_USER(
+    `ID` VARCHAR(50) NOT NULL,
     `USERNAME` VARCHAR(50) NOT NULL,
     `PASSWORD` VARCHAR(1000) NOT NULL,
     `FULL_NAME` NVARCHAR(100) NOT NULL,

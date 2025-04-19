@@ -4,6 +4,7 @@ import com.dainv.ptit.mvc.model.UserLoginInfo;
 import com.dainv.ptit.mvc.model.UserRegisterInfo;
 import com.dainv.ptit.mvc.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,7 +34,8 @@ public class AuthController {
     }
 
     @GetMapping("/home")
-    public String homePage() {
+    public String homePage(Model model, Authentication authentication) {
+        model.addAttribute("isAuthenticated", authentication.isAuthenticated());
         return "home";
     }
 }

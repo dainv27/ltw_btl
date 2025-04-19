@@ -11,18 +11,21 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "TZT_USER")
+@Table(name = "TBL_USER")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "ID")
-    private Long id;
+    private String id;
 
     @Column(name = "USERNAME", unique = true)
     private String username;
 
     @Column(name = "PASSWORD")
     private String password;
+
+    @Column(name = "FULL_NAME")
+    private String fullName;
 
     @Column(name = "EMAIL")
     private String email;
