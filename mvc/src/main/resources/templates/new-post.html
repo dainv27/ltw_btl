@@ -15,9 +15,14 @@
 <div class="container">
     <form th:action="@{/new-post}" method="post" class="new-post-form">
         <h3 class="mb-5 mt-5">Đăng bài của riêng bạn</h3>
+        <h6>Title</h6>
         <input type="text" name="title" class="form-control mb-2" placeholder="Title" required>
-        <input type="text" name="summary" class="form-control mb-2" placeholder="Summary" required>
-        <input type="text" name="content" class="form-control mb-2" placeholder="Content">
+
+        <h6>Summary</h6>
+        <textarea name="summary" class="form-control mb-2" placeholder="Summary" required></textarea>
+
+        <h6>Content</h6>
+        <textarea name="content" rows="10" class="form-control mb-2" placeholder="Content"></textarea>
         <button type="submit" class="btn btn-primary mb-2">Đăng bài</button>
     </form>
 </div>
