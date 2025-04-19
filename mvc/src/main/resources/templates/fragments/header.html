@@ -1,41 +1,53 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<nav class="navbar navbar-expand-lg navbar-light bg-light px-4 shadow-sm" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Z-Blog</a>
+        <a class="navbar-brand fw-bold text-primary" th:href="@{/}">Z-Blog</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" aria-current="page" th:href="@{/}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                    <a class="nav-link active" aria-current="page" href="#">Bài đăng</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                    <a class="nav-link active" aria-current="page" href="#">Đăng bài</a>
                 </li>
             </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
 
-            <div sec:authorize="isAuthenticated()">
-                <form th:action="@{/logout}" method="post" style="margin-left: 10px">
-                    <button type="submit" class="btn btn-outline-danger">Sign Out</button>
+            <div class="ms-auto d-flex align-items-center">
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
+                <!-- Dropdown -->
+                <div sec:authorize="isAuthenticated()" class="dropdown" style="margin-left: 15px">
+                    <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" id="userDropdown"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- Avatar -->
+                        <img th:src="@{/images/user-avatar.png}" alt="avatar" width="32" height="32" class="rounded-circle me-2">
+                        <!-- Tên người dùng -->
+                        <span th:text="${#authentication.name}">Username</span>
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end mt-2" aria-labelledby="userDropdown">
+                        <li class="px-3 py-2 text-muted small">
+                            <div th:text="${#authentication.name}">User Name</div>
+                            <small class="d-block">Member since 2024</small>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" th:href="@{/profile}">Hồ sơ</a>
+                        </li>
+                        <li>
+                            <form th:action="@{/logout}" method="post" class="m-0 p-0">
+                                <button type="submit" class="dropdown-item text-danger">Sign out</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

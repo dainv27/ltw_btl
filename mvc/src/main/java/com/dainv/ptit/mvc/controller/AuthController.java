@@ -1,6 +1,5 @@
 package com.dainv.ptit.mvc.controller;
 
-import com.dainv.ptit.mvc.model.UserLoginInfo;
 import com.dainv.ptit.mvc.model.UserRegisterInfo;
 import com.dainv.ptit.mvc.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -39,4 +38,3 @@ public class AuthController {
         return "home";
     }
 }
-

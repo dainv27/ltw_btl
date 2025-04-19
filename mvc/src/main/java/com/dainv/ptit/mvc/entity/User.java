@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "TBL_USER")
-public class User {
+public class User extends AuditEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "ID")
