@@ -19,7 +19,7 @@
 
     <!-- Right Side: Login Form -->
     <div class="right-side">
-        <form th:action="@{/register}" th:object="${user}" method="post" class="login-form">
+        <form th:action="@{/register}" th:object="${user}" method="post" class="register-form">
             <h3 class="mb-4 text-center">Great! Let's start</h3>
             <div th:if="${param.error}" class="alert alert-danger">Invalid username or password</div>
             <input type="text" name="username" class="form-control" placeholder="Username" required>

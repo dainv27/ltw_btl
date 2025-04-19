@@ -19,4 +19,14 @@ public class PostController {
         model.addAttribute("post", post);
         return "post";
     }
+
+    @GetMapping("/new-post")
+    public String newPost(Model model){
+        return "new-post";
+    }
+
+    @GetMapping("/my-posts")
+    public String myPosts(Model model){
+        return "my-posts";
+    }
 }
