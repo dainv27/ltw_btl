@@ -1,7 +1,8 @@
 package com.dainv.ptit.mvc.service;
 
 import com.dainv.ptit.mvc.entity.User;
+import com.dainv.ptit.mvc.model.UserRegisterInfo;
 
 public interface UserService {
-    void register(User user);
+    void register(UserRegisterInfo user);
 }

@@ -2,35 +2,35 @@ spring:
   application:
     name: mvc
 
-  datasource:
-    url: jdbc:h2:mem:zblogdb
-    driver-class-name: org.h2.Driver
-    username: sa
-    password:
-  h2:
-    console:
-      enabled: true
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    database-platform: org.hibernate.dialect.H2Dialect
+#  datasource:
+#    url: jdbc:h2:mem:zblogdb
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password:
+#  h2:
+#    console:
+#      enabled: true
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    show-sql: true
+#    database-platform: org.hibernate.dialect.H2Dialect
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/changelog-master.yaml
     database-change-log-lock-table: TZT_DATABASECHANGELOGLOCK
     database-change-log-table: TZT_DATABASECHANGELOG
-#  datasource:
-#    url: "jdbc:mariadb://${DATABASE_URL:localhost:3307}/z_blog?createDatabaseIfNotExist=true"
-#    driver-class-name: org.mariadb.jdbc.Driver
-#    username: ${DATABASE_USERNAME:lap_tring_web}
-#    password: ${DATABASE_PASSWORD:lap_tring_web}
-#  jpa:
-#    database-platform: org.hibernate.dialect.MariaDBDialect
-#    show-sql: true
-#    hibernate:
-#      ddl-auto: none
-#      dialect: org.hibernate.dialect.MariaDBDialect
-#      naming:
-#        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-#      format_sql: false
+  datasource:
+    url: "jdbc:mariadb://${DATABASE_URL:14.224.166.195:3300}/svc_z_blog?createDatabaseIfNotExist=true"
+    driver-class-name: org.mariadb.jdbc.Driver
+    username: ${DATABASE_USERNAME:svc_z_blog}
+    password: ${DATABASE_PASSWORD:vuew4NdJgM3yZb5b}
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+      dialect: org.hibernate.dialect.MariaDBDialect
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      format_sql: false

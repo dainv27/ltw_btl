@@ -1,6 +1,6 @@
 package com.dainv.ptit.mvc.service.impl;
-
 import com.dainv.ptit.mvc.entity.User;
+import com.dainv.ptit.mvc.model.UserRegisterInfo;
 import com.dainv.ptit.mvc.repository.UserRepository;
 import com.dainv.ptit.mvc.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -14,9 +14,11 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder passwordEncoder;
 
     @Override
-    public void register(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+    public void register(UserRegisterInfo user) {
+        User userEntity = new User();
+        userEntity.setUsername(user.getUsername());
+        userEntity.setPassword(passwordEncoder.encode(user.getPassword()));
+        userRepository.save(userEntity);
     }
 }
 
