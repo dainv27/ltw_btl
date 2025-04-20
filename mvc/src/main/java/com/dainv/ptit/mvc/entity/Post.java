@@ -1,15 +1,20 @@
 package com.dainv.ptit.mvc.entity;
 
+import com.dainv.ptit.mvc.model.PostStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,6 +35,14 @@ public class Post extends AuditEntity{
     @JoinColumn(name = "AUTHOR", referencedColumnName = "ID")
     private User author;
 
+    @Column(name = "STATUS")
+    @Enumerated(EnumType.STRING)
+    private PostStatus status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY", referencedColumnName = "ID")
+    private Category category;
+
     @Column(name = "TITLE")
     private String title;
 
@@ -41,4 +54,9 @@ public class Post extends AuditEntity{
 
     @Column(name = "CONTENT")
     private String content;
+
+    @PrePersist
+    protected void onCreate() {
+        if(this.status == null) this.status = PostStatus.DRAFT;
+    }
 }

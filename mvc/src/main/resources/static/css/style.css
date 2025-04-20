@@ -101,3 +101,29 @@ body, html {
         text-align: justify;
     }
 }
+
+.post-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.post-title .author {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.category-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.category-items img{
+    width: 150px;
+    height: auto;
+    padding: 10px;
+}
+

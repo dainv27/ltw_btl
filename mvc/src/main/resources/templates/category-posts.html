@@ -14,47 +14,23 @@
     <header th:insert="fragments/header.html" > </header>
 
     <div class="container py-5">
-        <h2 class="mb-5 fw-bold">Hôm nay chúng ta có gì?</h2>
-        <div class="row">
+        <h2 class="mb-5 fw-bold" th:text="${posts[0].category.name}"></h2>
+        <div style="width: 100%; display: flex; flex-direction: column; align-items: center">
             <div class="col-8">
-                <div class="row justify-content-center">
-                    <div class="col-md-10">
-                        <h3>Chủ đề được quan tâm</h3>
-                        <div class="row" th:each="category : ${categories}">
-                            <div class="col mb-2">
-                                <div class="card h-100 shadow-sm">
-                                    <div class="category-items">
-                                        <img th:src="@{${category.thumbnailUrl}}" class="card-img-top" alt="category-thumbnail">
-                                        <div class="card-body">
-                                            <h5 class="card-title fw-bold" th:text="${category.name}"></h5>
-                                            <p class="card-text text-muted" th:text="${category.summary}"></p>
-                                            <a th:href="@{/posts(category=${category.id})}" class="btn btn-outline-primary btn-sm mt-2">Xem thêm</a>
-                                        </div>
+                <div class="row" th:each="post : ${posts}">
+                    <div class="col mb-2">
+                        <div class="card h-100 shadow-sm" style="display: flex; flex-direction: row; justify-content: space-between">
+                            <img th:src="@{${post.thumbnailUrl}}" class="card-img" alt="thumbnail" style="width: 200px; object-fit: cover;">
+                            <div class="card-body">
+                                <div class="post-title">
+                                    <h5 class="card-title fw-bold" th:text="${post.title}">Tiêu đề bài viết</h5>
+                                    <div class="author">
+                                        <img th:src="@{/images/user-avatar.png}" alt="auth-avatar" width="25" height="25" class="rounded-circle me-2">
+                                        <p class="fw-bold" th:text="${post.author.fullName}">Tên tác giả</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <h3>Xu hướng</h3>
-                <div class="col-md-10">
-                    <div class="row" th:each="post : ${posts}">
-                        <div class="col mb-2">
-                            <div class="card h-100 shadow-sm">
-                                <img th:src="@{${post.thumbnailUrl}}" class="card-img-top" alt="thumbnail" style="height: 150px; object-fit: cover;">
-                                <div class="card-body">
-                                    <div class="post-title">
-                                        <h5 class="card-title fw-bold" th:text="${post.title}">Tiêu đề bài viết</h5>
-                                        <div class="author">
-                                            <img th:src="@{/images/user-avatar.png}" alt="auth-avatar" width="25" height="25" class="rounded-circle me-2">
-                                            <p class="fw-bold" th:text="${post.author.fullName}">Tên tác giả</p>
-                                        </div>
-                                    </div>
-                                    <p class="card-text text-muted" th:text="${post.summary}">Tóm tắt nội dung...</p>
-                                    <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-outline-primary btn-sm mt-2">Đọc tiếp</a>
-                                </div>
+                                <p class="card-text text-muted" th:text="${post.summary}">Tóm tắt nội dung...</p>
+                                <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-outline-primary btn-sm mt-2">Đọc tiếp</a>
                             </div>
                         </div>
                     </div>

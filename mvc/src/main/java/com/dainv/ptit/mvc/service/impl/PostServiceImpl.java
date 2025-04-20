@@ -18,13 +18,22 @@ public class PostServiceImpl implements PostService {
     private final PostRepository postRepo;
 
     @Override
-    public List<Post> getLatestPosts() {
-        Page<Post> posts = postRepo.findAll(PageRequest.of(0, 10, Sort.by("createdTime")));
-        return posts.getContent();
+    public Page<Post> getLatestPosts(Integer page, Integer limit) {
+        return postRepo.findAll(PageRequest.of(page, limit, Sort.by("createdTime").descending()));
     }
 
     @Override
-    public Optional<Post> get(Long id) {
+    public Page<Post> getLatestByCategoryId(Long categoryId, Integer page, Integer limit) {
+        return postRepo.findAllByCategoryId(categoryId, PageRequest.of(page, limit, Sort.by("createdTime").descending()));
+    }
+
+    @Override
+    public Optional<Post> getById(Long id) {
         return postRepo.findById(id);
+    }
+
+    @Override
+    public Page<Post> getLatestPostsByAuthorId(String authorId, Integer page, Integer limit) {
+        return postRepo.findByAuthorId(authorId, PageRequest.of(page, limit, Sort.by("createdTime").descending()));
     }
 }

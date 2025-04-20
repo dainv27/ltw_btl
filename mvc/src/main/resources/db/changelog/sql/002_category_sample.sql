@@ -1,13 +1,8 @@
 --liquibase formatted sql
---changeset svc_z_blog:tbl-category-001
+--changeset svc_z_blog:tbl-category-sample-001
 --preconditions onFail:MARK_RAN onError:HALT
---precondition-sql-check expectedResult:0 SELECT COUNT(*) C FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME='TBL_CATEGORY';
-CREATE TABLE TBL_CATEGORY(
-    `ID` INT NOT NULL,
-    `NAME` NVARCHAR(500) NOT NULL,
-    `SUMMARY` NVARCHAR(2000) NOT NULL,
-    `CREATE_TIME` DATETIME DEFAULT NULL,
-    `LAST_UPDATE` DATETIME DEFAULT NULL,
-
-    PRIMARY KEY (`ID`)
-);
+--precondition-sql-check expectedResult:0 SELECT COUNT(*) C FROM TBL_CATEGORY;
+INSERT INTO TBL_CATEGORY (ID, NAME, THUMBNAIL_URL, SUMMARY, CREATE_TIME) VALUES (1, 'Angular JS', 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/2048px-Angular_full_color_logo.svg.png', 'AngularJS (also known as Angular 1) is a discontinued free and open-source JavaScript-based web framework for developing single-page applications.', NOW());
+INSERT INTO TBL_CATEGORY (ID, NAME, THUMBNAIL_URL, SUMMARY, CREATE_TIME) VALUES (2, 'Vue.JS', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png', 'An open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications.', NOW());
+INSERT INTO TBL_CATEGORY (ID, NAME, THUMBNAIL_URL, SUMMARY, CREATE_TIME) VALUES (3, 'Boostrap', 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Bootstrap_logo.svg/1200px-Bootstrap_logo.svg.png', 'Bootstrap (formerly Twitter Bootstrap) is a free and open-source CSS framework directed at responsive, mobile-first front-end web development.', NOW());
+INSERT INTO TBL_CATEGORY (ID, NAME, THUMBNAIL_URL, SUMMARY, CREATE_TIME) VALUES (4, 'Spring MVC', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8i4zPog-0j0JR_yZglxPhTPZXxN2iMTQ3Dw&s', 'An open-source Java framework used for programming standalone, production-grade Spring-based applications with a bundle of libraries that make project startup and management easier.', NOW());
