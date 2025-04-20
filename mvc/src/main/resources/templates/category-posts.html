@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+    <script type="text/javascript" th:src="@{/css/script.css}"></script>
+</head>
+<body>
+    <header th:insert="fragments/header.html" > </header>
+
+    <div class="container py-5">
+        <h2 class="mb-5 fw-bold">Hôm nay chúng ta có gì?</h2>
+        <div class="row">
+            <div class="col-8">
+                <div class="row justify-content-center">
+                    <div class="col-md-10">
+                        <h3>Chủ đề được quan tâm</h3>
+                        <div class="row" th:each="category : ${categories}">
+                            <div class="col mb-2">
+                                <div class="card h-100 shadow-sm">
+                                    <div class="category-items">
+                                        <img th:src="@{${category.thumbnailUrl}}" class="card-img-top" alt="category-thumbnail">
+                                        <div class="card-body">
+                                            <h5 class="card-title fw-bold" th:text="${category.name}"></h5>
+                                            <p class="card-text text-muted" th:text="${category.summary}"></p>
+                                            <a th:href="@{/posts(category=${category.id})}" class="btn btn-outline-primary btn-sm mt-2">Xem thêm</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <h3>Xu hướng</h3>
+                <div class="col-md-10">
+                    <div class="row" th:each="post : ${posts}">
+                        <div class="col mb-2">
+                            <div class="card h-100 shadow-sm">
+                                <img th:src="@{${post.thumbnailUrl}}" class="card-img-top" alt="thumbnail" style="height: 150px; object-fit: cover;">
+                                <div class="card-body">
+                                    <div class="post-title">
+                                        <h5 class="card-title fw-bold" th:text="${post.title}">Tiêu đề bài viết</h5>
+                                        <div class="author">
+                                            <img th:src="@{/images/user-avatar.png}" alt="auth-avatar" width="25" height="25" class="rounded-circle me-2">
+                                            <p class="fw-bold" th:text="${post.author.fullName}">Tên tác giả</p>
+                                        </div>
+                                    </div>
+                                    <p class="card-text text-muted" th:text="${post.summary}">Tóm tắt nội dung...</p>
+                                    <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-outline-primary btn-sm mt-2">Đọc tiếp</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer th:insert="fragments/footer.html"> </footer>
+</body>
+</html>
