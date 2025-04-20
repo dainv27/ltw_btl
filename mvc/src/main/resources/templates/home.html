@@ -26,7 +26,8 @@
                                 <div class="card h-100 shadow-sm">
                                     <img th:src="@{${post.thumbnailUrl}}" class="card-img-top" alt="thumbnail" style="height: 150px; object-fit: cover;">
                                     <div class="card-body">
-                                        <h5 class="card-title" th:text="${post.title}">Tiêu đề bài viết</h5>
+                                        <h5 class="card-title fw-bold" th:text="${post.title}">Tiêu đề bài viết</h5>
+                                        <p class="fw-bold" th:text="${post.author.fullName}">Tên tác giả</p>
                                         <p class="card-text text-muted" th:text="${post.summary}">Tóm tắt nội dung...</p>
                                         <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-outline-primary btn-sm mt-2">Đọc tiếp</a>
                                     </div>
