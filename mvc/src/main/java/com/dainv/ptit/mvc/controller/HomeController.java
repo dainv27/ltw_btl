@@ -2,6 +2,7 @@ package com.dainv.ptit.mvc.controller;
 
 import com.dainv.ptit.mvc.entity.Category;
 import com.dainv.ptit.mvc.entity.Post;
+import com.dainv.ptit.mvc.model.PostStatus;
 import com.dainv.ptit.mvc.service.CategoryService;
 import com.dainv.ptit.mvc.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ public class HomeController {
         Page<Category> categories = categoryService.findAll(0, 10);
         model.addAttribute("categories", categories);
 
-        Page<Post> posts = postService.getLatestPosts(0, 10);
+        Page<Post> posts = postService.getLatestTrendingPosts(0, 10);
         model.addAttribute("posts", posts.getContent());
         return "home";
     }

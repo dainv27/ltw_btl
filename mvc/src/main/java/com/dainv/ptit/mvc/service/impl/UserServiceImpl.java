@@ -1,6 +1,6 @@
 package com.dainv.ptit.mvc.service.impl;
 import com.dainv.ptit.mvc.entity.User;
-import com.dainv.ptit.mvc.mapper.UserToUserDetailMapper;
+import com.dainv.ptit.mvc.mapper.UserMapper;
 import com.dainv.ptit.mvc.model.UserRegisterInfo;
 import com.dainv.ptit.mvc.repository.UserRepository;
 import com.dainv.ptit.mvc.service.UserService;
@@ -11,12 +11,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserDetailsService, UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final UserToUserDetailMapper userToUserDetailMapper;
+    private final UserMapper userMapper;
 
     @Override
     public void register(UserRegisterInfo user) {
@@ -28,9 +30,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
+    public Optional<User> getUser(String id) {
+        return userRepository.findById(id);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return this.userRepository.findByUsername(username)
-                .map(userToUserDetailMapper::toUserDetails)
+                .map(userMapper::toUserDetails)
                 .orElseThrow(() -> new UsernameNotFoundException(username));
     }
 }

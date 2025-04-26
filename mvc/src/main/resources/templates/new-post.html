@@ -15,14 +15,38 @@
 <div class="container">
     <form th:action="@{/new-post}" method="post" class="new-post-form">
         <h3 class="mb-5 mt-5">Đăng bài của riêng bạn</h3>
-        <h6>Title</h6>
-        <input type="text" name="title" class="form-control mb-2" placeholder="Title" required>
+        <div class="row mb-2">
+            <div class="col-md-8">
+                <label style="width: 100%">
+                    Title
+                    <input type="text" name="title" class="form-control" placeholder="Title" required>
+                </label>
+            </div>
+            <div class="col-md-4">
+                <label style="width: 100%">
+                    Category
+                    <select name="category" class="form-select" aria-label="Category selector" >
+                        <option th:each="category : ${categories}"
+                                th:value="${category.id}"
+                                th:text="${category.name}"
+                        ></option>
+                    </select>
+                </label>
+            </div>
+        </div>
+        <label>
+            Cover image
+            <input type="text" name="thumbnailUrl" class="form-control" placeholder="Cover image URL" required>
+        </label>
+        <label>
+            Summary
+            <textarea name="summary" class="form-control mb-2" placeholder="Summary" required></textarea>
+        </label>
 
-        <h6>Summary</h6>
-        <textarea name="summary" class="form-control mb-2" placeholder="Summary" required></textarea>
-
-        <h6>Content</h6>
-        <textarea name="content" rows="10" class="form-control mb-2" placeholder="Content"></textarea>
+        <label>
+            Content
+            <textarea name="content" rows="10" class="form-control mb-2" placeholder="Content"></textarea>
+        </label>
         <button type="submit" class="btn btn-primary mb-2">Đăng bài</button>
     </form>
 </div>

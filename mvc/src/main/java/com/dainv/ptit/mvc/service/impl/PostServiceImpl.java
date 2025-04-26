@@ -1,6 +1,9 @@
 package com.dainv.ptit.mvc.service.impl;
 
 import com.dainv.ptit.mvc.entity.Post;
+import com.dainv.ptit.mvc.mapper.PostMapper;
+import com.dainv.ptit.mvc.model.NewPost;
+import com.dainv.ptit.mvc.model.PostStatus;
 import com.dainv.ptit.mvc.repository.PostRepository;
 import com.dainv.ptit.mvc.service.PostService;
 import lombok.RequiredArgsConstructor;
@@ -9,13 +12,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
     private final PostRepository postRepo;
+    private final PostMapper postMapper;
 
     @Override
     public Page<Post> getLatestPosts(Integer page, Integer limit) {
@@ -30,6 +33,26 @@ public class PostServiceImpl implements PostService {
     @Override
     public Optional<Post> getById(Long id) {
         return postRepo.findById(id);
+    }
+
+    @Override
+    public Page<Post> getLatestPostsByStatus(Integer page, Integer limit) {
+        return postRepo.findAllByStatusIs(PostStatus.PUBLISHED, PageRequest.of(page, limit, Sort.by("createdTime").descending()));
+    }
+
+    @Override
+    public Page<Post> getLatestTrendingPosts(Integer page, Integer limit) {
+        return postRepo.findAllByStatusIs(PostStatus.PUBLISHED, PageRequest.of(page, limit, Sort.by("rate", "createdTime").descending()));
+    }
+
+    @Override
+    public Page<Post> getLatestPostsByAuthorIdAndStatusIs(String authorId, PostStatus postStatus, Integer page, Integer limit) {
+        return postRepo.findByAuthorIdAndStatusIs(authorId, postStatus, PageRequest.of(page, limit, Sort.by("createdTime").descending()));
+    }
+
+    @Override
+    public void create(NewPost post) {
+        postRepo.save(postMapper.fromNewPost(post));
     }
 
     @Override

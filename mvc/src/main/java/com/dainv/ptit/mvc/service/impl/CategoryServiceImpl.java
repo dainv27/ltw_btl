@@ -1,6 +1,7 @@
 package com.dainv.ptit.mvc.service.impl;
 
 import com.dainv.ptit.mvc.entity.Category;
+import com.dainv.ptit.mvc.model.PostStatus;
 import com.dainv.ptit.mvc.repository.CategoryRepository;
 import com.dainv.ptit.mvc.service.CategoryService;
 import lombok.RequiredArgsConstructor;

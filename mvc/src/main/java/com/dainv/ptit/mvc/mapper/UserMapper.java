@@ -5,6 +5,6 @@ import com.dainv.ptit.mvc.model.UserDetailSec;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface UserToUserDetailMapper {
+public interface UserMapper {
     UserDetailSec toUserDetails(User user);
 }
